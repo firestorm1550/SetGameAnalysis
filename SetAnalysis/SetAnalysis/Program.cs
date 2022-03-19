@@ -6,10 +6,29 @@ namespace SetAnalysis
 {
     class Program
     {
+        private static Random _random = new Random();
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
 
+            List<SetCard> deck = GenerateDeck();
+            var subset = GetRandomSubset(12, deck);
+            var sets = SetFinder.FindSets(subset);
+            
+            Console.WriteLine(subset.ToPrettyString()+"\n");
+            Console.WriteLine(sets.ToPrettyString());
+        }
+
+        private static List<SetCard> GetRandomSubset(int numCards, List<SetCard> wholeDeck)
+        {
+            if (numCards > wholeDeck.Count)
+                Console.WriteLine("There are only " + wholeDeck.Count + " cards in the whole deck and you've requested " + numCards + ". Here's the whole deck");
+            List<SetCard> chosenCards = wholeDeck.OrderBy(x => _random.Next()).Take(numCards).ToList();
+            return chosenCards;
+        }
+
+        private static List<SetCard> GenerateDeck()
+        {
             List<SetCard> cards = new List<SetCard>();
             
             foreach (Number number in Enum.GetValues<Number>())
@@ -21,19 +40,7 @@ namespace SetAnalysis
                 //Console.WriteLine("Card " + cards.Count + ": " + cards.Last());
             }
 
-            Random random = new Random();
-            List<SetCard> subset = new List<SetCard>();
-            for (int i = 0; i < 12; i++)
-            {
-                int index = random.Next(0, cards.Count - 1);
-                subset.Add(cards[index]);
-                cards.RemoveAt(index);
-            }
-
-            var sets = SetFinder.FindSets(subset);
-            
-            Console.WriteLine(subset.ToPrettyString()+"\n");
-            Console.WriteLine(sets.ToPrettyString());
+            return cards;
         }
     }
 }
