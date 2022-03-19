@@ -18,8 +18,22 @@ namespace SetAnalysis
             foreach (Shading shading in Enum.GetValues<Shading>())
             {
                 cards.Add(new SetCard(number, color, shape, shading));
-                Console.WriteLine("Card: " + cards.Count + ": " + cards.Last());
+                //Console.WriteLine("Card " + cards.Count + ": " + cards.Last());
             }
+
+            Random random = new Random();
+            List<SetCard> subset = new List<SetCard>();
+            for (int i = 0; i < 12; i++)
+            {
+                int index = random.Next(0, cards.Count - 1);
+                subset.Add(cards[index]);
+                cards.RemoveAt(index);
+            }
+
+            var sets = SetFinder.FindSets(subset);
+            
+            Console.WriteLine(subset.ToPrettyString()+"\n");
+            Console.WriteLine(sets.ToPrettyString());
         }
     }
 }
