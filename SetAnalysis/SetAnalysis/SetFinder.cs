@@ -7,10 +7,10 @@ namespace SetAnalysis
     {
         public static bool IsSet(SetCard card1, SetCard card2, SetCard card3)
         {
-            int numberSum = card1.Number.AsByte() + card2.Number.AsByte() + card3.Number.AsByte();
-            int colorSum = card1.Color.AsByte() + card2.Color.AsByte() + card3.Color.AsByte();
-            int shapeSum = card1.Shape.AsByte() + card2.Shape.AsByte() + card3.Shape.AsByte();
-            int shadingSum = card1.Shading.AsByte() + card2.Shading.AsByte() + card3.Shading.AsByte();
+            int numberSum = card1.Number.Value + card2.Number.Value + card3.Number.Value;
+            int colorSum = card1.Color.Value + card2.Color.Value + card3.Color.Value;
+            int shapeSum = card1.Shape.Value + card2.Shape.Value + card3.Shape.Value;
+            int shadingSum = card1.Shading.Value + card2.Shading.Value + card3.Shading.Value;
 
             numberSum %= 3; 
             colorSum %= 3; 

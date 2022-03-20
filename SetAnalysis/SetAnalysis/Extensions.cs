@@ -6,10 +6,6 @@ namespace SetAnalysis
 {
     public static class Extensions
     {
-        public static byte AsByte(this Number number) => (byte) number;
-        public static byte AsByte(this Color color) => (byte) color;
-        public static byte AsByte(this Shape shape) => (byte) shape;
-        public static byte AsByte(this Shading shading) => (byte) shading;
 
         public static List<Tuple<SetCard, SetCard, SetCard>> CreateTriplets(this List<SetCard> cards)
         {
@@ -24,6 +20,28 @@ namespace SetAnalysis
 
             return triplets;
         }
+
+        public static Type GetMostCommonCharacteristic(this List<SetCard> cards)
+        {
+            // foreach (var pair in _cachedAttributeDictionary)
+            // foreach (KeyValuePair<byte, int> internalPair in pair.Value)
+            //     pair.Value[internalPair.Key] = 0;
+            //
+            // foreach (SetCard card in cards)
+            // {
+            //     _cachedAttributeDictionary[typeof(Number)][card.Number.Value]++;
+            //     _cachedAttributeDictionary[typeof(Color)][card.Color.Value]++;
+            //     _cachedAttributeDictionary[typeof(Shape)][card.Shape.Value]++;
+            //     _cachedAttributeDictionary[typeof(Shading)][card.Shading.Value]++;
+            // }
+            //
+            //
+            // foreach (var pair in _cachedAttributeDictionary)
+            // foreach (KeyValuePair<byte, int> internalPair in pair.Value)
+            //     pair.Value[internalPair.Key] = 0;
+            throw new NotImplementedException();
+        }
+
 
         public static string ToPrettyString(this List<SetCard> cards) => cards.Count + " Cards:\n" + string.Join("\n", cards);
         public static string ToPrettyString(this List<Set> sets) => sets.Count + " Sets:\n" + string.Join("\n", sets);

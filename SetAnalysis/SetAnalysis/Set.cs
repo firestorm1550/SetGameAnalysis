@@ -36,7 +36,7 @@ namespace SetAnalysis
         {
             
         }
-
+        
         public override string ToString()
         {
             return "{" + Card1 + ", " + Card2 + ", " + Card3 + "}";
