@@ -21,6 +21,17 @@ namespace SetAnalysis
             if (ReferenceEquals(null, other)) return 1;
             return Value.CompareTo(other.Value);
         }
+
+        public static List<Characteristic> GetAllCharacteristics()
+        {
+            List<Characteristic> characteristics = new List<Characteristic>();
+            
+            characteristics.AddRange(Color.GetValues());
+            characteristics.AddRange(Number.GetValues());
+            characteristics.AddRange(Shape.GetValues());
+            characteristics.AddRange(Shading.GetValues());
+            return characteristics;
+        }
     }
 
     public class Color : Characteristic

@@ -9,7 +9,7 @@ namespace SetAnalysis
         public SetCard Card2;
         public SetCard Card3;
 
-        public List<Type> MatchingAttributes;
+        public List<Characteristic> MatchingAttributes;
 
         public Set(SetCard card1, SetCard card2, SetCard card3)
         {
@@ -20,16 +20,16 @@ namespace SetAnalysis
             Card2 = card2;
             Card3 = card3;
 
-            MatchingAttributes = new List<Type>();
+            MatchingAttributes = new List<Characteristic>();
             
             if(card1.Number == card2.Number && card2.Number == card3.Number)
-                MatchingAttributes.Add(typeof(Number));
+                MatchingAttributes.Add(card1.Number);
             if(card1.Color == card2.Color && card2.Color == card3.Color)
-                MatchingAttributes.Add(typeof(Color));
+                MatchingAttributes.Add(card1.Color);
             if(card1.Shape == card2.Shape && card2.Shape == card3.Shape)
-                MatchingAttributes.Add(typeof(Shape));
+                MatchingAttributes.Add(card1.Shape);
             if(card1.Shading == card2.Shading && card2.Shading == card3.Shading)
-                MatchingAttributes.Add(typeof(Shading));
+                MatchingAttributes.Add(card1.Shading);
         }
 
         public Set(Tuple<SetCard, SetCard, SetCard> triplet) : this(triplet.Item1, triplet.Item2, triplet.Item3)

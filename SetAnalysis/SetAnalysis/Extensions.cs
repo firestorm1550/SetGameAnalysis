@@ -6,7 +6,6 @@ namespace SetAnalysis
 {
     public static class Extensions
     {
-
         public static List<Tuple<SetCard, SetCard, SetCard>> CreateTriplets(this List<SetCard> cards)
         {
             var triplets = new List<Tuple<SetCard, SetCard, SetCard>>();
@@ -21,25 +20,29 @@ namespace SetAnalysis
             return triplets;
         }
 
-        public static Type GetMostCommonCharacteristic(this List<SetCard> cards)
+        public static Characteristic GetMostCommonCharacteristic(this List<SetCard> cards)
         {
-            // foreach (var pair in _cachedAttributeDictionary)
-            // foreach (KeyValuePair<byte, int> internalPair in pair.Value)
-            //     pair.Value[internalPair.Key] = 0;
-            //
-            // foreach (SetCard card in cards)
-            // {
-            //     _cachedAttributeDictionary[typeof(Number)][card.Number.Value]++;
-            //     _cachedAttributeDictionary[typeof(Color)][card.Color.Value]++;
-            //     _cachedAttributeDictionary[typeof(Shape)][card.Shape.Value]++;
-            //     _cachedAttributeDictionary[typeof(Shading)][card.Shading.Value]++;
-            // }
-            //
-            //
-            // foreach (var pair in _cachedAttributeDictionary)
-            // foreach (KeyValuePair<byte, int> internalPair in pair.Value)
-            //     pair.Value[internalPair.Key] = 0;
-            throw new NotImplementedException();
+            Dictionary<Characteristic, int> occurrences = new Dictionary<Characteristic, int>();
+            foreach (var characteristic in Characteristic.GetAllCharacteristics()) 
+                occurrences[characteristic] = 0;
+
+            foreach (SetCard card in cards)
+            {
+                occurrences[card.Number]++;
+                occurrences[card.Color]++;
+                occurrences[card.Shape]++;
+                occurrences[card.Shading]++;
+            }
+            
+            
+            Characteristic most = Number.One;
+            
+            foreach (var characteristic in Characteristic.GetAllCharacteristics())
+                if (occurrences[characteristic] > occurrences[most])
+                    most = characteristic;
+
+
+            return most;
         }
 
 
